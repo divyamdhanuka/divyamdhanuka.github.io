@@ -151,6 +151,52 @@ async function drawLineChart() {
             .style("left", `${d3.event.pageX + 15}px`)
             .style("top", `${d3.event.pageY - 28}px`);
     }
-}
+
+    // Find maximum anomaly value
+    let maxAnomalyValue = d3.max(dataset, d => d.anomaly);
+
+    // Find the index of maximum anomaly
+    let maxAnomalyIndex = dataset.findIndex(d => d.anomaly === maxAnomalyValue);
+
+    let maxAnomalyData = dataset[maxAnomalyIndex];
+
+    const type = d3.annotationCustomType(
+    d3.annotationXYThreshold,
+    {"note":{
+        "lineType":"none",
+        "orientation": "topBottom",
+        "align":"middle"}
+    }
+);
+
+let annotations = [{
+    note: {
+        title: "Highest Temperature Anomaly",
+        label: `Year: ${maxAnomalyData.date.getFullYear()}, Anomaly: ${maxAnomalyData.anomaly.toFixed(2)} °C`,
+        wrap: 150
+    },
+    x: x(maxAnomalyData.date),
+    y: y(maxAnomalyData.anomaly),
+    dy: 50,
+    dx: -250
+}];
+
+const makeAnnotations = d3.annotation()
+    .type(type)
+    .annotations(annotations)
+    .accessors({
+        x: d => x(d.date),
+        y: d => y(d.anomaly)
+    })
+    .accessorsInverse({
+        date: d => x.invert(d.x),
+        anomaly: d => y.invert(d.y)
+    });
+
+svg.append("g")
+    .attr("class", "annotation-group")
+    .call(makeAnnotations);
+        
+    }
 
 drawLineChart();
