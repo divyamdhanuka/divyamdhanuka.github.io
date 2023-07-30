@@ -53,3 +53,16 @@ body {
 .axis-title {
   fill: white;
 }
+
+.annotation-note-title {
+  fill: white;
+  font-size: 1.2em;
+}
+
+.annotation-note-label {
+  fill: white;
+}
+
+.annotation-note-bg {
+  fill: rgba(0, 0, 0, 0.8);
+}
