@@ -1,0 +1,55 @@
+body {
+  background-color: #333;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#chart-title {
+  font-size: 24px;
+  color: white;
+  padding-bottom: 15px;
+  text-decoration: none;
+}
+
+.tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 10px;
+  background: white;
+  color: black;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.line {
+  fill: none;
+  stroke-width: 2px;
+}
+
+.x-axis-gridlines .tick line,
+.y-axis-gridlines .tick line {
+  stroke: white;
+}
+
+.x-axis-gridlines .tick text,
+.y-axis-gridlines .tick text {
+  fill: white;
+}
+
+.axis-label {
+  font-size: 14px;
+  fill: white;
+  text-decoration: none;
+}
+
+.axis-title {
+  fill: white;
+}
